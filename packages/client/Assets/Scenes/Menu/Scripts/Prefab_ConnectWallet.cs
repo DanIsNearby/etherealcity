@@ -24,26 +24,26 @@ public struct WalletButton
 public class Prefab_ConnectWallet : MonoBehaviour
 {
     [Header("SETTINGS")]
-    public string chain = "goerli";
+    public string chain = "optimism-goerli";
     public List<Wallet> supportedWallets = new List<Wallet> { Wallet.MetaMask, Wallet.CoinbaseWallet, Wallet.WalletConnect };
 
     [Header("UI - CONNECTING (DO NOT EDIT)")]
     public GameObject connectButton;
     public GameObject connectDropdown;
-    public GameObject connectScene;
+    public GameObject connnectState;
     public List<WalletButton> walletButtons;
 
     [Header("UI - CONNECTED (DO NOT EDIT)")]
     public GameObject connectedButton;
     public GameObject connectedDropdown;
-    public GameObject connectedScene;
+    public GameObject connnectedState;
     public TMP_Text connectInfoText;
     public TMP_Text walletAddressText;
     public Image dropdownIcon;
 
     public string address;
 
-    ThirdwebSDK SDK;
+    public ThirdwebSDK SDK;
 
     // SDK Initialization
 
@@ -84,10 +84,9 @@ public class Prefab_ConnectWallet : MonoBehaviour
 
         connectDropdown.SetActive(false);
         connectedDropdown.SetActive(false);
-        
-        connectScene.SetActive(true);
-        connectedScene.SetActive(false);
 
+        connnectState.SetActive(true);
+        connnectedState.SetActive(false);
     }
 
     // Connecting
@@ -112,8 +111,8 @@ public class Prefab_ConnectWallet : MonoBehaviour
             connectDropdown.SetActive(false);
             connectedDropdown.SetActive(false);
 
-            connectScene.SetActive(false);
-            connectedScene.SetActive(true);
+            connnectState.SetActive(false);
+            connnectedState.SetActive(true);
 
             dropdownIcon.sprite = walletButtons.Find(x => x.wallet == _wallet).icon;
 
@@ -140,8 +139,8 @@ public class Prefab_ConnectWallet : MonoBehaviour
             connectDropdown.SetActive(false);
             connectedDropdown.SetActive(false);
 
-            connectScene.SetActive(true);
-            connectedScene.SetActive(false);
+            connnectState.SetActive(true);
+            connnectedState.SetActive(false);
 
             LogThirdweb($"Disconnected successfully.");
 
