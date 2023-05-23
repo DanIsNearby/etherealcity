@@ -6,6 +6,8 @@ using Thirdweb;
 public class Mint : MonoBehaviour
 {
     public string chain = "optimism-goerli";
+    public GameObject city;
+
     public Prefab_ConnectWallet prefabConnectWallet;
 
     ThirdwebSDK SDK;
@@ -16,6 +18,7 @@ public class Mint : MonoBehaviour
         Contract contract = SDK.GetContract("0xa1216c84bcaafd72aee1c1dea29f86dae76f00ba");
         var data = await contract.Write("claim");
         if (data.isSuccessful()){
+            city.SetActive(true);
             Debug.Log("Sucess");
         }else{
             Debug.Log("Failure");
